@@ -65,7 +65,7 @@ export function Hero() {
         <dl className="mt-14 grid grid-cols-3 border-t border-line pt-6 md:mt-20">
           {STATS.map((stat) => (
             <div key={stat.label} className="flex flex-col gap-1 pr-4">
-              <dt className="label order-2 text-[0.6rem] text-muted md:text-[0.6875rem]">
+              <dt className="label order-2 text-[0.6875rem] text-muted md:text-xs">
                 {stat.label}
               </dt>
               <dd className="order-1 text-xl font-semibold tracking-tight md:text-3xl">
