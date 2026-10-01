@@ -42,7 +42,7 @@ export function Services() {
     <section
       id="services"
       aria-labelledby="services-title"
-      className="scroll-mt-20 py-24 md:py-36"
+      className="scroll-mt-20 py-20 md:py-32"
     >
       <div className="container-x">
         <div className="grid gap-10 md:grid-cols-12 md:items-end">
@@ -99,7 +99,7 @@ export function Services() {
                         {service.from}
                       </dd>
                       <dt className="label mt-3 text-muted">Duration</dt>
-                      <dd className="mt-1 text-sm text-foreground/80">
+                      <dd className="mt-1 text-[0.9375rem] text-foreground/85">
                         {service.time}
                       </dd>
                     </dl>

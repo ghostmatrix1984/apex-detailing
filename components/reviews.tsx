@@ -39,7 +39,7 @@ export function Reviews() {
     <section
       id="reviews"
       aria-labelledby="reviews-title"
-      className="scroll-mt-20 py-24 md:py-36"
+      className="scroll-mt-20 py-20 md:py-32"
     >
       <div className="container-x">
         <SectionLabel index="06">Reputation</SectionLabel>
@@ -54,7 +54,7 @@ export function Reviews() {
               <Stars />
               <span className="label text-muted">312 verified reviews</span>
             </div>
-            <p className="mt-6 max-w-xs text-sm leading-relaxed text-foreground/60">
+            <p className="mt-6 max-w-xs leading-relaxed text-foreground/70">
               Average rating across Google and independent owners&apos; club
               reviews since 2014.
             </p>
@@ -77,14 +77,17 @@ export function Reviews() {
           </Reveal>
         </div>
 
-        <ul className="mt-20 grid gap-px bg-line md:mt-28 md:grid-cols-3">
+        <ul className="mt-16 grid border-t border-line md:mt-24 md:grid-cols-3">
           {REVIEWS.map((r, i) => (
-            <li key={r.name} className="bg-background">
-              <Reveal delay={i * 100} className="flex h-full flex-col justify-between gap-10 py-8 md:p-8 md:first:pl-0">
-                <figure>
+            <li
+              key={r.name}
+              className="border-b border-line py-8 md:border-b-0 md:border-l md:px-8 md:py-10 md:first:border-l-0 md:first:pl-0 md:last:pr-0"
+            >
+              <Reveal delay={i * 100} className="flex h-full flex-col">
+                <figure className="flex h-full flex-col">
                   <Stars />
-                  <blockquote className="mt-6">
-                    <p className="leading-relaxed text-foreground/85">
+                  <blockquote className="mt-6 flex-1">
+                    <p className="text-[1.0625rem] leading-relaxed text-pretty text-foreground/85 md:text-lg">
                       &ldquo;{r.quote}&rdquo;
                     </p>
                   </blockquote>
