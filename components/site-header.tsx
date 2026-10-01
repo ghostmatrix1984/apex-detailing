@@ -19,7 +19,7 @@ export function Logo() {
       <span className="font-display text-2xl leading-none">
         Ape<span className="text-accent">x</span>
       </span>
-      <span className="label hidden text-[0.6875rem] text-muted sm:inline">
+      <span className="label hidden text-[0.6rem] text-muted sm:inline">
         Detailing
       </span>
     </span>

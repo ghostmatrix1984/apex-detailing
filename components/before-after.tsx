@@ -18,10 +18,10 @@ export function BeforeAfter() {
     <section
       id="results"
       aria-labelledby="results-title"
-      className="scroll-mt-20 border-t border-line bg-surface py-20 md:py-32"
+      className="scroll-mt-20 border-t border-line bg-surface py-24 md:py-36"
     >
       <div className="container-x">
-        <div className="grid gap-8 md:grid-cols-12 md:items-end">
+        <div className="grid gap-10 md:grid-cols-12 md:items-end">
           <div className="md:col-span-8">
             <SectionLabel index="02">Results</SectionLabel>
             <h2
@@ -33,7 +33,7 @@ export function BeforeAfter() {
               Depth in<span className="text-accent">.</span>
             </h2>
           </div>
-          <p className="max-w-sm text-pretty text-foreground/75 md:col-span-4 md:justify-self-end md:pb-2">
+          <p className="max-w-sm text-foreground/70 md:col-span-4 md:pb-3">
             Drag across the panel. Same door, same inspection light — before and
             after a three-stage correction on a 2019 gloss-black saloon.
           </p>
@@ -67,7 +67,7 @@ export function BeforeAfter() {
             className="pointer-events-none absolute inset-y-0 w-px bg-accent"
             style={{ left: `${position}%` }}
           >
-            <div className="absolute top-1/2 left-1/2 flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-accent text-accent-foreground">
+            <div className="absolute top-1/2 left-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-accent text-accent-foreground">
               <svg viewBox="0 0 24 24" className="size-5" fill="none">
                 <path
                   d="M9 6 3 12l6 6M15 6l6 6-6 6"
@@ -82,8 +82,7 @@ export function BeforeAfter() {
           <span className="label pointer-events-none absolute top-5 left-5 bg-background/80 px-3 py-2 text-foreground">
             Before
           </span>
-          <span className="label pointer-events-none absolute top-5 right-5 flex items-center gap-2 bg-background/80 px-3 py-2 text-foreground">
-            <span aria-hidden="true" className="size-1.5 bg-accent" />
+          <span className="label pointer-events-none absolute top-5 right-5 bg-accent px-3 py-2 text-accent-foreground">
             After
           </span>
 
@@ -97,7 +96,7 @@ export function BeforeAfter() {
             max={100}
             value={position}
             onChange={(e) => setPosition(Number(e.target.value))}
-            className="absolute inset-0 h-full w-full cursor-ew-resize touch-pan-y opacity-0"
+            className="absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
           />
         </div>
       </div>

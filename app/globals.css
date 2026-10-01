@@ -4,7 +4,7 @@
   --background: #0a0a0b;
   --surface: #131315;
   --foreground: #ecebe6;
-  --muted: #a3a29c;
+  --muted: #8b8a86;
   --line: rgb(236 235 230 / 0.12);
   --accent: #d4ff2a;
   --accent-foreground: #0a0a0b;
@@ -34,9 +34,8 @@
 
 @utility label {
   font-family: var(--font-geist-mono);
-  font-size: 0.75rem;
-  line-height: 1.4;
-  letter-spacing: 0.16em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
@@ -56,19 +55,6 @@
 html {
   scroll-behavior: smooth;
   background: var(--background);
-}
-
-/* Scale the rem base on large monitors so supporting copy stays readable beside vw-driven headings. */
-@media (width >= 1800px) {
-  html {
-    font-size: 106.25%;
-  }
-}
-
-@media (width >= 2400px) {
-  html {
-    font-size: 118.75%;
-  }
 }
 
 body {

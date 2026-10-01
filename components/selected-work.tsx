@@ -27,7 +27,7 @@ export function SelectedWork() {
     <section
       id="work"
       aria-labelledby="work-title"
-      className="scroll-mt-20 border-t border-line py-20 md:py-32"
+      className="scroll-mt-20 border-t border-line py-24 md:py-36"
     >
       <div className="container-x">
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
@@ -45,7 +45,7 @@ export function SelectedWork() {
           <GhostLink href="#work">View full portfolio</GhostLink>
         </div>
 
-        <Reveal className="mt-14 md:mt-20">
+        <Reveal className="mt-16 md:mt-24">
           <figure className="group">
             <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/9] lg:aspect-[21/9]">
               <Image

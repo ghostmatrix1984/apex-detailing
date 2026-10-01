@@ -82,7 +82,7 @@ export function SiteFooter() {
           Ape<span className="text-accent/20">x</span>
         </p>
 
-        <div className="flex flex-col gap-4 border-t border-line py-8 text-sm text-muted md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-4 border-t border-line py-8 text-xs text-muted md:flex-row md:items-center md:justify-between">
           <p>&copy; {new Date().getFullYear()} APEX Detailing Ltd. All rights reserved.</p>
           <ul className="flex gap-8">
             <li>
