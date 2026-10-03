@@ -1,3 +1,4 @@
+import { DetailSpecProvider } from "@/components/detail-spec";
 import { SiteHeader } from "@/components/site-header";
 import { Hero } from "@/components/hero";
 import { Services } from "@/components/services";
@@ -6,12 +7,12 @@ import { BuildYourDetail } from "@/components/build-your-detail";
 import { SelectedWork } from "@/components/selected-work";
 import { Process } from "@/components/process";
 import { Reviews } from "@/components/reviews";
-import { FinalCta } from "@/components/final-cta";
+import { BookingSection } from "@/components/booking-section";
 import { SiteFooter } from "@/components/site-footer";
 
 export default function Home() {
   return (
-    <>
+    <DetailSpecProvider>
       <SiteHeader />
       <main>
         <Hero />
@@ -21,9 +22,9 @@ export default function Home() {
         <SelectedWork />
         <Process />
         <Reviews />
-        <FinalCta />
+        <BookingSection />
       </main>
       <SiteFooter />
-    </>
+    </DetailSpecProvider>
   );
 }

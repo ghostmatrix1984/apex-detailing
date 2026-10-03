@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useDetailSpec } from "./detail-spec";
 import { ArrowIcon, SectionLabel } from "./ui";
 
 const VEHICLES = [
@@ -41,6 +42,7 @@ function StepLegend({ letter, children }: { letter: string; children: string }) 
 }
 
 export function BuildYourDetail() {
+  const { requestDetail } = useDetailSpec();
   const [vehicle, setVehicle] = useState<VehicleId>("saloon");
   const [selected, setSelected] = useState<PackageId[]>(["correct", "ceramic"]);
 
@@ -55,6 +57,16 @@ export function BuildYourDetail() {
     setSelected((prev) =>
       prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id],
     );
+
+  // Hand the specification to the booking section and let it pull the visitor
+  // through to the enquiry form.
+  const handleRequestDetail = () =>
+    requestDetail({
+      vehicleId: activeVehicle.id,
+      vehicleLabel: activeVehicle.label,
+      services: lines.map(({ id, label, price }) => ({ id, label, price })),
+      total,
+    });
 
   return (
     <section
@@ -240,6 +252,10 @@ export function BuildYourDetail() {
 
               <a
                 href="#book"
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleRequestDetail();
+                }}
                 className="group flex items-center justify-between gap-4 border-t border-line px-6 py-5 text-sm font-semibold uppercase tracking-[0.12em] text-foreground transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent md:px-8"
               >
                 Request this detail
