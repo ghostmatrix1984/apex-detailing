@@ -32,6 +32,9 @@ Durable instructions for Harness sessions working on this repository.
 - Scroll through the entire page and test the functionality affected by the change, including relevant desktop and mobile layouts and console errors.
 - For responsive or layout work, test at minimum at these viewport widths: 320px, 360px, 375px, 390px, 412px, plus tablet and desktop. A single mobile viewport is not sufficient for responsive QA.
 - At each relevant width, check for: horizontal page overflow; text or headings extending outside their containers; clipped content; broken wrapping; and buttons or controls extending outside the viewport.
+- After pushing a feature branch and Vercel creating a Preview deployment, browser-test the actual Vercel Preview when practical. Preview QA is an additional final verification that must exercise the functionality changed by the task and the responsive QA matrix defined above; local production-mode QA remains required first.
+- Protected Vercel Previews can be accessed with the existing `VERCEL_AUTOMATION_BYPASS_SECRET` environment variable, using Vercel's `x-vercel-protection-bypass` request header or its browser bypass-cookie mechanism as appropriate.
+- Never print, echo, log, commit, expose in screenshots, or otherwise include the bypass secret value in responses. Do not put the secret into project files or Git.
 - Browser-test artifacts under `.playwright-mcp/` are disposable and must never be committed.
 
 ## Git and deployment
