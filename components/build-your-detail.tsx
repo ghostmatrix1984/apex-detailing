@@ -97,7 +97,7 @@ export function BuildYourDetail() {
           <div className="flex flex-col gap-14 lg:col-span-7">
             <fieldset>
               <StepLegend letter="A">Vehicle class</StepLegend>
-              <div className="mt-6 grid grid-cols-2 gap-px border border-line bg-line md:grid-cols-4">
+              <div className="mt-6 grid grid-cols-2 gap-px border border-line bg-line max-[30rem]:grid-cols-1 md:grid-cols-4">
                 {VEHICLES.map((v) => {
                   const active = v.id === vehicle;
                   return (
@@ -117,17 +117,15 @@ export function BuildYourDetail() {
                         onChange={() => setVehicle(v.id)}
                         className="sr-only"
                       />
-                      <span className="flex items-start justify-between gap-3">
-                        <span className="font-display text-[clamp(1.375rem,2vw,1.75rem)]">
-                          {v.label}
-                        </span>
-                        <span
-                          aria-hidden="true"
-                          className={`mt-1 size-2 shrink-0 transition-colors ${
-                            active ? "bg-accent outline outline-background" : "bg-foreground/20"
-                          }`}
-                        />
+                      <span className="font-display text-[clamp(1.375rem,2vw,1.75rem)]">
+                        {v.label}
                       </span>
+                      <span
+                        aria-hidden="true"
+                        className={`absolute top-6 right-5 size-2 transition-colors md:top-7 md:right-6 ${
+                          active ? "bg-accent outline outline-background" : "bg-foreground/20"
+                        }`}
+                      />
                       <span
                         className={`label ${active ? "text-background/70" : "text-muted"}`}
                       >
