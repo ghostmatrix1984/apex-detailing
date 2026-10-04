@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <DetailSpecProvider>
       <SiteHeader />
-      <main>
+      <main id="main-content" tabIndex={-1} className="outline-none">
         <Hero />
         <Services />
         <BeforeAfter />

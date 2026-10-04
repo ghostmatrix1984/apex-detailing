@@ -1,7 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+} from "react";
 import { ArrowIcon } from "./ui";
 
 const NAV = [
@@ -12,6 +18,10 @@ const NAV = [
   { href: "#process", label: "Process" },
   { href: "#reviews", label: "Reviews" },
 ];
+
+/** Controls the open-drawer keyboard focus trap cycles through. */
+const FOCUSABLE_SELECTOR =
+  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 export function Logo() {
   return (
@@ -30,11 +40,26 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
+  const headerRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const firstItemRef = useRef<HTMLAnchorElement>(null);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Close the drawer when the viewport grows into the desktop navigation so a
+  // menu opened on a phone can never leave the page scroll-locked.
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 1024px)");
+    const onChange = () => {
+      if (query.matches) setOpen(false);
+    };
+    query.addEventListener("change", onChange);
+    return () => query.removeEventListener("change", onChange);
   }, []);
 
   useEffect(() => {
@@ -44,8 +69,57 @@ export function SiteHeader() {
     };
   }, [open]);
 
+  // While the drawer is open, keep the page behind it out of reach for pointer
+  // and assistive-technology users.
+  useEffect(() => {
+    if (!open) return;
+    const background = document.querySelectorAll<HTMLElement>("main, footer");
+    for (const element of background) element.setAttribute("inert", "");
+    return () => {
+      for (const element of background) element.removeAttribute("inert");
+    };
+  }, [open]);
+
+  // Land keyboard focus inside the drawer as soon as it opens.
+  useEffect(() => {
+    if (open) firstItemRef.current?.focus();
+  }, [open]);
+
+  const closeMenu = useCallback(() => {
+    setOpen(false);
+    toggleRef.current?.focus();
+  }, []);
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (!open) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeMenu();
+      return;
+    }
+    if (event.key !== "Tab") return;
+    // Trap Tab focus within the header while the drawer covers the page.
+    const focusables = Array.from(
+      headerRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR) ?? [],
+    ).filter((element) => element.offsetParent !== null);
+    if (focusables.length === 0) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const active = document.activeElement;
+    const inside = active instanceof HTMLElement && focusables.includes(active);
+    if (event.shiftKey && (!inside || active === first)) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && (!inside || active === last)) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
+
   return (
     <header
+      ref={headerRef}
+      onKeyDown={handleKeyDown}
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
         scrolled || open
           ? "border-b border-line bg-background/90 backdrop-blur-md"
@@ -81,8 +155,9 @@ export function SiteHeader() {
             <ArrowIcon className="size-3.5 transition-transform group-hover:translate-x-0.5" />
           </a>
           <button
+            ref={toggleRef}
             type="button"
-            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
+            className="relative flex h-10 w-10 flex-col items-center justify-center gap-1.5 after:absolute after:-inset-1 after:content-[''] lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
@@ -104,12 +179,13 @@ export function SiteHeader() {
         id="mobile-nav"
         aria-label="Mobile"
         hidden={!open}
-        className="h-[calc(100dvh-4rem)] border-t border-line bg-background lg:hidden"
+        className="h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-line bg-background md:h-[calc(100dvh-5rem)] lg:hidden"
       >
         <ul className="container-x flex flex-col pt-6">
           {NAV.map((item, i) => (
             <li key={item.href} className="border-b border-line">
               <a
+                ref={i === 0 ? firstItemRef : undefined}
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className="flex items-baseline justify-between py-5"
