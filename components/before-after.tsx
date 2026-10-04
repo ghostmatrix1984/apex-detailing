@@ -13,6 +13,7 @@ const READINGS = [
 
 export function BeforeAfter() {
   const [position, setPosition] = useState(50);
+  const [handleFocused, setHandleFocused] = useState(false);
 
   return (
     <section
@@ -67,7 +68,13 @@ export function BeforeAfter() {
             className="pointer-events-none absolute inset-y-0 w-px bg-accent"
             style={{ left: `${position}%` }}
           >
-            <div className="absolute top-1/2 left-1/2 flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-accent text-accent-foreground">
+            <div
+              className={`absolute top-1/2 left-1/2 flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-accent text-accent-foreground ${
+                handleFocused
+                  ? "outline-2 outline-offset-4 outline-foreground"
+                  : ""
+              }`}
+            >
               <svg viewBox="0 0 24 24" className="size-5" fill="none">
                 <path
                   d="M9 6 3 12l6 6M15 6l6 6-6 6"
@@ -96,7 +103,10 @@ export function BeforeAfter() {
             min={0}
             max={100}
             value={position}
+            aria-valuetext={`${position}% before, ${100 - position}% after`}
             onChange={(e) => setPosition(Number(e.target.value))}
+            onFocus={() => setHandleFocused(true)}
+            onBlur={() => setHandleFocused(false)}
             className="absolute inset-0 h-full w-full cursor-ew-resize touch-pan-y opacity-0"
           />
         </div>

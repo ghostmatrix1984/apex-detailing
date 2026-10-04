@@ -32,7 +32,12 @@ export default function RootLayout({
       lang="en-GB"
       className={`${archivo.variable} ${geistMono.variable} bg-background antialiased`}
     >
-      <body className="min-h-full font-sans">{children}</body>
+      <body className="min-h-full font-sans">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }
