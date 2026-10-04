@@ -30,6 +30,8 @@ Durable instructions for Harness sessions working on this repository.
 - For final browser QA, DO NOT rely on the Next.js development server: Playwright in this environment has an HMR/WebSocket issue that can prevent hydration, which silently breaks client-side behaviour (for example reveal/scroll animations never activate).
 - For browser QA, run a clean production build (`npm run build`) and start Next.js production mode on an available port, normally 3001 (`npm run start -- -p 3001`), then use the Playwright browser tools to inspect the rendered site.
 - Scroll through the entire page and test the functionality affected by the change, including relevant desktop and mobile layouts and console errors.
+- For responsive or layout work, test at minimum at these viewport widths: 320px, 360px, 375px, 390px, 412px, plus tablet and desktop. A single mobile viewport is not sufficient for responsive QA.
+- At each relevant width, check for: horizontal page overflow; text or headings extending outside their containers; clipped content; broken wrapping; and buttons or controls extending outside the viewport.
 - Browser-test artifacts under `.playwright-mcp/` are disposable and must never be committed.
 
 ## Git and deployment
