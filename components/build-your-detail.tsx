@@ -103,7 +103,7 @@ export function BuildYourDetail() {
                   return (
                     <label
                       key={v.id}
-                      className={`relative flex cursor-pointer flex-col justify-between gap-8 p-5 transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:-outline-offset-2 has-[:focus-visible]:outline-accent md:p-6 ${
+                      className={`@container relative flex cursor-pointer flex-col justify-between gap-8 p-5 transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:-outline-offset-2 has-[:focus-visible]:outline-accent md:p-6 ${
                         active
                           ? "bg-foreground text-background"
                           : "bg-background hover:bg-surface"
@@ -117,7 +117,7 @@ export function BuildYourDetail() {
                         onChange={() => setVehicle(v.id)}
                         className="sr-only"
                       />
-                      <span className="font-display text-[clamp(1.375rem,2vw,1.75rem)]">
+                      <span className="font-display text-[min(clamp(1.375rem,2vw,1.75rem),calc(15.5cqi_-_2px))]">
                         {v.label}
                       </span>
                       <span
