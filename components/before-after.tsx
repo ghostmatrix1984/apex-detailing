@@ -27,7 +27,7 @@ export function BeforeAfter() {
             <SectionLabel index="02">Results</SectionLabel>
             <h2
               id="results-title"
-              className="font-display mt-8 text-[clamp(2.5rem,7vw,7rem)]"
+              className="font-display mt-8 text-[clamp(2.5rem,7vw,7rem)] max-[24.5rem]:text-[calc(12.2vw_-_8px)]"
             >
               Swirls out.
               <br />
