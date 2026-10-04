@@ -97,7 +97,7 @@ export function BuildYourDetail() {
           <div className="flex flex-col gap-14 lg:col-span-7">
             <fieldset>
               <StepLegend letter="A">Vehicle class</StepLegend>
-              <div className="mt-6 grid grid-cols-2 gap-px border border-line bg-line max-[30rem]:grid-cols-1 md:grid-cols-4">
+              <div className="mt-6 grid grid-cols-2 gap-px border border-line bg-line max-[30rem]:grid-cols-1 3xl:grid-cols-4">
                 {VEHICLES.map((v) => {
                   const active = v.id === vehicle;
                   return (
@@ -117,7 +117,7 @@ export function BuildYourDetail() {
                         onChange={() => setVehicle(v.id)}
                         className="sr-only"
                       />
-                      <span className="font-display text-[min(clamp(1.375rem,2vw,1.75rem),calc(15.5cqi_-_2px))]">
+                      <span className="font-display text-[min(clamp(1.375rem,2vw,1.75rem),calc(15.8cqi_-_2px))]">
                         {v.label}
                       </span>
                       <span
