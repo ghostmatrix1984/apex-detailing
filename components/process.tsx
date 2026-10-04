@@ -37,7 +37,7 @@ export function Process() {
             <SectionLabel index="05">Process</SectionLabel>
             <h2
               id="process-title"
-              className="font-display mt-8 text-[clamp(2.5rem,7vw,7rem)]"
+              className="font-display mt-8 text-[clamp(2.5rem,7vw,7rem)] max-[24.5rem]:text-[calc(12.2vw_-_8px)]"
             >
               No shortcuts<span className="text-accent">.</span>
             </h2>

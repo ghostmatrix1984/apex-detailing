@@ -37,7 +37,7 @@ export function Hero() {
 
         <h1
           id="hero-title"
-          className="font-display animate-rise max-w-[14ch] text-[clamp(3.25rem,11vw,12.5rem)] text-balance"
+          className="font-display animate-rise max-w-[14ch] text-[clamp(3.25rem,11vw,12.5rem)] text-balance max-[29.25rem]:text-[calc(12.75vw_-_8.5px)]"
           style={{ animationDelay: "200ms" }}
         >
           Paint,
